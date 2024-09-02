@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>Profile Section</h1>
+
+<table align="center" cellpadding="10">
+    <tr>
+        <td><b>Username:</b></td>
+        <td>{{user.username}}</td>
+    </tr>
+    <tr>
+        <td><b>Email:</b></td>
+        <td>{{user.email}}</td>
+    </tr>
+    <tr>
+        <td><b>First Name:</b></td>
+        <td>{{user.first_name}}</td>
+    </tr>
+    <tr>
+        <td><b>Last Name:</b></td>
+        <td>{{user.last_name}}</td>
+    </tr>
+    <tr>
+        <td>Image</td>
+        <td><img src="{{user.profile.image.url}}" alt="" style="width: 150px; height: 100px;"></td>
+    </tr>
+
+</table>
+
+<h3>Complete your profile here..</h3>
+<div class="row">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{u_form|crispy}}
+        {{p_form}}
+        <button class="btn btn-info my-4">Update</button>
+    </form>
+</div>
+
+
+{% endblock content %}

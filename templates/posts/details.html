@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Post Details</h1>
+
+<div class="card my-2">
+    <div class="media card-body">
+        <img class="mr-3 rounded-circle" src="{{object.author.profile.image.url}}" style="width: 50px;" alt="Generic placeholder image">
+        <div class="media-body">
+            <a href="#">
+                <p>{{object.author}}</p>
+            </a>
+            <a href="{% url 'DetailsView' post.id %}">
+                <h5 class="mt-0">{{object.title}}</h5>
+            </a>
+            {{object.content}}
+            <p><b>{{object.date}}</b></p>
+        </div>
+    </div>
+    {% if object.author == user %}
+    <div>
+        <a class="btn btn-secondary btn-sm mt-1 mb-3 ms-3" href="{% url 'update' object.id %}">UPDATE</a>
+        <a class="btn btn-danger btn-sm mt-1 mb-3 ms-3" href="{% url 'delete' object.id %}">DELETE</a>
+    </div>
+    {% endif %}
+</div>
+
+
+
+
+{% endblock content %}

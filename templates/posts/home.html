@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for post in data %}
+<div class="card my-2">
+    <div class="media card-body">
+        <img class="mr-3 rounded-circle" src="{{post.author.profile.image.url}}" style="width: 50px;" alt="Generic placeholder image">
+        <div class="media-body">
+            <a href="#">
+                <p>{{post.author}}</p>
+            </a>
+            <a href="{% url 'DetailsView' post.id %}">
+                <h5 class="mt-0">{{post.title}}</h5>
+            </a>
+            {{post.content}}
+            <p><b>{{post.date}}</b></p>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}
